@@ -1,8 +1,6 @@
 # Sinatra::NamedRoute
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sinatra/named_route`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Supports named routes and makes it easy to access to URI path.
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+It's very simple.
+
+```ruby
+class App < Sinatra::Base
+  register Sinatra::NamedRoute
+
+  get '/', name: :index do
+    uri(:with_params, id: 1234, name: 'namusyaka') #=> /params/1234/names/namusyaka
+  end
+
+  get '/params/:id/names/:name', name: :with_params do
+    uri(:index) #=> /
+  end
+end
+```
 
 ## Development
 
@@ -32,7 +44,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sinatra-named_route.
+Bug reports and pull requests are welcome on GitHub at https://github.com/namusyaka/sinatra-named_route.
 
 
 ## License
