@@ -27,11 +27,11 @@ class App < Sinatra::Base
   register Sinatra::NamedRoute
 
   get '/', name: :index do
-    uri(:with_params, id: 1234, name: 'namusyaka') #=> /params/1234/names/namusyaka
+    redirect uri(:with_params, id: 1234, name: 'namusyaka') #=> Redirect to /params/1234/names/namusyaka
   end
 
   get '/params/:id/names/:name', name: :with_params do
-    uri(:index) #=> /
+    "index is #{url(:index)}" #=> index is /
   end
 end
 ```
