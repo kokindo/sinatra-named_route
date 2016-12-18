@@ -25,4 +25,15 @@ describe Sinatra::NamedRoute do
     get '/'
     assert_equal '/params/1234/names/namusyaka', last_response.body
   end
+
+  it 'is able to memoize processing by given params' do
+    mock_app do
+      get '/', name: :caching do
+        uri(:caching)
+        uri(:caching)
+      end
+    end
+    Mustermann::Sinatra.any_instance.expects(:expand).with({}).returns('/').once
+    get '/'
+  end
 end

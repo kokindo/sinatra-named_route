@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'rack/test'
+require 'mocha/mini_test'
 require 'mustermann'
 require 'sinatra/base'
 require 'sinatra/named_route'
